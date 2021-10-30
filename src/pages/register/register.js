@@ -1,25 +1,31 @@
 import { useState, useEffect } from "react";
-import "../login/login.css"
+import "../login/login.css";
 
 function Register() {
   const [register, setRegister] = useState({
-    name:"",
+    name: "",
     email: "",
-    userName:"",
+    userName: "",
     password: "",
-    confirm:""
+    confirm: "",
   });
 
   const [errors, setErrors] = useState({
-    name:"",
+    name: "",
     email: "",
-    userName:"",
+    userName: "",
     password: "",
-    confirm:""
+    confirm: "",
   });
 
   useEffect(() => {
-    if (!errors.name && !errors.email && !errors.userName && !errors.password && !errors.confirm) {
+    if (
+      !errors.name &&
+      !errors.email &&
+      !errors.userName &&
+      !errors.password &&
+      !errors.confirm
+    ) {
       console.log(register);
     }
   }, [errors]);
@@ -28,23 +34,18 @@ function Register() {
     console.log(e.target, e.target.value);
     const emailValidation =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      const whiteSpaces =
-      /^[-a-zA-Z0-9-()]+(\S+[-a-zA-Z0-9-()]+)*$/;
-      const password =
+    const whiteSpaces = /^[-a-zA-Z0-9-()]+(\S+[-a-zA-Z0-9-()]+)*$/;
+    const password =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (e.target.name === "name"){
-        setRegister({
-            ...register,
-            name: e.target.value,
-          });
-          setErrors({
-            ...errors,
-            name:
-              e.target.value.length === 0
-                ? "The Name field is required"
-                : null,
-          });
-
+    if (e.target.name === "name") {
+      setRegister({
+        ...register,
+        name: e.target.value,
+      });
+      setErrors({
+        ...errors,
+        name: e.target.value.length === 0 ? "The Name field is required" : null,
+      });
     } else if (e.target.name === "email") {
       setRegister({
         ...register,
@@ -60,22 +61,21 @@ function Register() {
             : null,
       });
     } else if (e.target.name === "userName") {
-        setRegister({
-          ...register,
-          userName: e.target.value,
-        });
-        setErrors({
-          ...errors,
-          userName:
-            e.target.value.length === 0
-              ? "The User Name field is required"
-              : !whiteSpaces.test(e.target.value)
-              ? "The user Name Shouldn't have any white spaces"
-              : null,
-        });
-    }
-     else if (e.target.name === "password") {
-        setRegister({
+      setRegister({
+        ...register,
+        userName: e.target.value,
+      });
+      setErrors({
+        ...errors,
+        userName:
+          e.target.value.length === 0
+            ? "The User Name field is required"
+            : !whiteSpaces.test(e.target.value)
+            ? "The user Name Shouldn't have any white spaces"
+            : null,
+      });
+    } else if (e.target.name === "password") {
+      setRegister({
         ...register,
         password: e.target.value,
       });
@@ -90,10 +90,9 @@ function Register() {
             ? "The Password should contain at least one lowercase, one uppercase, at least one digit, & special character [*@%$# ] and mustn't have any white spaces."
             : null,
       });
-    }
-    else if (e.target.name === "confirm") {
-        console.log(register.password)
-        setRegister({
+    } else if (e.target.name === "confirm") {
+      console.log(register.password);
+      setRegister({
         ...register,
         confirm: e.target.value,
       });
@@ -102,31 +101,31 @@ function Register() {
         confirm:
           e.target.value.length === 0
             ? "This field is required to confirm your Password"
-            : (e.target.value !== register.password)
+            : e.target.value !== register.password
             ? "The Repeated Password doesn't match."
             : null,
       });
     }
   };
 
-//   const submitLogin = (e) => {
-//     e.preventDefault();
-//     setErrors({
-//       ...errors,
-//       email:
-//         e.target.value.length === 0
-//           ? "The Email field is required"
-//           : !re.test(e.target.value)
-//           ? "You shouuld provide an email"
-//           : null,
-//       password:
-//         e.target.value.length === 0
-//           ? "The Password field is required"
-//           : e.target.value.length < 8
-//           ? "Minmum Length should be 8 characters"
-//           : null,
-//     });
-//   };
+  //   const submitLogin = (e) => {
+  //     e.preventDefault();
+  //     setErrors({
+  //       ...errors,
+  //       email:
+  //         e.target.value.length === 0
+  //           ? "The Email field is required"
+  //           : !re.test(e.target.value)
+  //           ? "You shouuld provide an email"
+  //           : null,
+  //       password:
+  //         e.target.value.length === 0
+  //           ? "The Password field is required"
+  //           : e.target.value.length < 8
+  //           ? "Minmum Length should be 8 characters"
+  //           : null,
+  //     });
+  //   };
 
   return (
     <div className="container my-5 border border-5 border-warning p-5 text-light">
@@ -147,11 +146,11 @@ function Register() {
                 id="name"
                 aria-describedby="name"
               />
-                {errors.name ? (
+              {errors.name ? (
                 <small className="text-danger">{errors.name}</small>
               ) : null}
-              </div>
-              <div className="mb-3">
+            </div>
+            <div className="mb-3">
               <label htmlFor="email" className="form-label">
                 Email Address:
               </label>

@@ -6,10 +6,22 @@ import Login from './pages/login/login';
 import Register from './pages/register/register';
 import MoviesDetails from './pages/moviesDetails/moviesDetails';
 import Favorite from './pages/favorite/favorite';
+import { LanguageProvider } from "./context/LanguageContext";
+import { useState } from 'react';
+
 
 
 function App() {
+  const [lang, setLang] = useState('en');
+  let language = "";
+
   return (
+    <div
+      dir={language === "ar" ? "rtl" : "ltr"}
+      className={language === "ar" ? "text-right" : "text-left"}
+    >
+      <LanguageProvider value={{ lang , setLang}}>
+
     <Router>
        <Navbar/>
       <Switch>
@@ -23,6 +35,8 @@ function App() {
 
     </Switch>
     </Router>
+    </LanguageProvider>
+    </div>
   );
 }
 

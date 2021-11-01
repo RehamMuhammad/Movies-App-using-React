@@ -10,3 +10,19 @@ export const getMovies = () => (dispatch) => {
     })
   );
 };
+
+export const addToFavorites = (data) => {
+    return {
+      type: types.ADD_FAVORITE,
+      payload: data,
+    };
+  };
+
+export const removeFavorites = (data) => {
+    return {
+      type: types.REMOVE_FAVORITE,
+      payload: data,
+    };
+  };
+  
+  

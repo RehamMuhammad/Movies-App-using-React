@@ -13,12 +13,11 @@ import { useState } from 'react';
 
 function App() {
   const [lang, setLang] = useState('en');
-  let language = "";
 
   return (
     <div
-      dir={language === "ar" ? "rtl" : "ltr"}
-      className={language === "ar" ? "text-right" : "text-left"}
+      dir={lang === "ar" ? "rtl" : "ltr"}
+      className={lang === "ar" ? "text-right" : "text-left"}
     >
       <LanguageProvider value={{ lang , setLang}}>
 
@@ -30,9 +29,6 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/details/:id" component={MoviesDetails} />
         <Route exact path="/favorites" component={Favorite} />
-
-
-
     </Switch>
     </Router>
     </LanguageProvider>

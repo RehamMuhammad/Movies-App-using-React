@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from "../../network/axiosConfig.js";
 import { getMovies, addToFavorites } from "../../redux/actions/movies.js";
 import { languageContext } from "../../context/LanguageContext";
+import {removeFavorites} from '../../redux/actions/movies'
+
 
 function Movies() {
   const { lang, setLang } = useContext(languageContext);
@@ -21,6 +23,15 @@ function Movies() {
   const [searchMovie, setSearchMovie] = useState("");
   const [movies, setMovies] = useState([]);
   movies.map((movie) => (movie.fav = false));
+
+  const removeMovie = (id,i) => {
+    if  (favoriteList.find((favMovie) => favMovie.id === id) ) {
+      favoriteList.splice(i,1)
+    }
+    dispatch(removeFavorites(favoriteList))
+  
+    }
+  
 
   // const dispatch = useDispatch();
 
@@ -102,7 +113,7 @@ function Movies() {
             </button>
           </div>{" "}
           <div className="col-8"></div>
-          {movies.map((movie) => {
+          {movies.map((movie,i) => {
             return (
               <div key={movie.id} className="col-md-2 col-4 p-1">
                 <img
@@ -149,6 +160,7 @@ function Movies() {
                     viewBox="0 0 16 16"
                     onClick={() => {
                       movie.fav = false;
+                     removeMovie(movie.id, i)
                     }}
                   >
                     <path
@@ -156,7 +168,6 @@ function Movies() {
                       d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
                     />
                   </svg>
-                  
                 )}
               </div>
             );

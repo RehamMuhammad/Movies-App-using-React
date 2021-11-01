@@ -3,7 +3,6 @@ import * as types from "../types";
 const INITIAL_STATE = {
   moviesList: [],
   favoriteList: [],
-
 };
 
 export function moviesReducer(state = INITIAL_STATE, action) {
@@ -18,21 +17,19 @@ export function moviesReducer(state = INITIAL_STATE, action) {
   }
 }
 
-  
 export function favoriteReducer(state = INITIAL_STATE, action) {
-    switch (action.type) {
-      case types.ADD_FAVORITE:
-        return {
-          ...state,
-          favoriteList: [...state.favoriteList, action.payload],
-        };
+  switch (action.type) {
+    case types.ADD_FAVORITE:
+      return {
+        ...state,
+        favoriteList: [...state.favoriteList, action.payload],
+      };
     case types.REMOVE_FAVORITE:
-        return{
-            ...state,
-            favoriteList: [...state.favoriteList],
-        };
-      default:
-        return state;
-    }
+      return {
+        ...state,
+        favoriteList: [...state.favoriteList],
+      };
+    default:
+      return state;
   }
-
+}
